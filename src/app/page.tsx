@@ -101,7 +101,9 @@ export default function Page() {
           We can map this to your real numbers and show you exactly where leads are being lost — and how to fix it.
         </p>
         <a
-          href="#"
+          href="https://link.futuradigital.app/widget/booking/SuJF7zuSUQtysLGaeDUL"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
             display: "inline-block",
             background: "#3b82f6",
