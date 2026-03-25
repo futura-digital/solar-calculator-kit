@@ -78,7 +78,7 @@ type FormState = "idle" | "submitting" | "success" | "error";
 
 export default function ROICalculator() {
   const [inputs, setInputs] = useState<ROIInputs>(DEFAULT_INPUTS);
-  const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "" });
+  const [form, setForm] = useState({ firstName: "", email: "", phone: "" });
   const [formState, setFormState] = useState<FormState>("idle");
 
   const results = calculateROI(inputs);
@@ -97,7 +97,6 @@ export default function ROICalculator() {
 
     const payload = {
       firstName: form.firstName,
-      lastName: form.lastName,
       email: form.email,
       phone: form.phone,
       source: "roi-calculator",
@@ -274,18 +273,9 @@ export default function ROICalculator() {
                 <input
                   name="firstName"
                   type="text"
-                  placeholder="First name"
+                  placeholder="Name"
                   required
                   value={form.firstName}
-                  onChange={handleFormChange}
-                  style={inputStyle}
-                />
-                <input
-                  name="lastName"
-                  type="text"
-                  placeholder="Last name"
-                  required
-                  value={form.lastName}
                   onChange={handleFormChange}
                   style={inputStyle}
                 />
