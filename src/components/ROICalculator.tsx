@@ -4,7 +4,7 @@ import { useState } from "react";
 import { calculateROI, ROIInputs } from "@/lib/calculations/roi";
 import { DEFAULT_INPUTS } from "@/lib/config/defaults";
 
-const GHL_WEBHOOK = "https://services.leadconnectorhq.com/hooks/qlxAaqfjvbPeEfzYXTPS/webhook-trigger/297b5768-124f-4c97-a016-2ee21a8a8182";
+const SUBMIT_URL = "/api/submit";
 const CALENDAR_URL = "https://link.futuradigital.app/widget/booking/SuJF7zuSUQtysLGaeDUL";
 
 const fmt = (value: number) =>
@@ -107,7 +107,7 @@ export default function ROICalculator() {
     };
 
     try {
-      await fetch(GHL_WEBHOOK, {
+      await fetch(SUBMIT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
