@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "ROI Calculator — Futura Digital",
-  description: "See how much revenue you're losing to missed leads and what you could recover.",
+  title: "Solar Savings Calculator — Synergi SW",
+  description: "Find out how much you could save on your energy bills with solar panels.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
