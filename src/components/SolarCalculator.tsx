@@ -65,21 +65,21 @@ export default function SolarCalculator() {
 
       {/* Header */}
       <div style={{ textAlign: "center", marginBottom: "2rem" }}>
-        <div style={{ display: "inline-block", background: BRAND.green, color: "#fff", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.3rem 0.9rem", borderRadius: "999px", marginBottom: "1rem" }}>
-          Free Solar Savings Estimate
+        <div style={{ display: "inline-block", background: BRAND.blue, color: "#fff", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.3rem 0.9rem", borderRadius: "999px", marginBottom: "1rem" }}>
+          Solar Savings Estimator — Free &amp; Instant
         </div>
         <h1 style={{ fontSize: "clamp(1.5rem, 4vw, 2.2rem)", fontWeight: 800, margin: "0 0 0.5rem", color: BRAND.text, lineHeight: 1.2 }}>
-          How much could solar save you?
+          See what solar could save your household — in 30 seconds
         </h1>
         <p style={{ margin: 0, color: BRAND.muted, fontSize: "0.95rem" }}>
-          Answer 4 quick questions and see your estimated savings instantly.
+          Enter a few details below. We'll show you your estimated annual saving, system cost, and how quickly it pays for itself.
         </p>
       </div>
 
       {/* Inputs */}
       <div style={{ background: "#fff", border: `1px solid ${BRAND.border}`, borderRadius: "16px", padding: "1.75rem", marginBottom: "1.5rem" }}>
         <h2 style={{ fontSize: "0.95rem", fontWeight: 700, margin: "0 0 1.5rem", color: BRAND.blue, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-          Your Details
+          Tell us about your home
         </h2>
 
         {/* Monthly bill */}
@@ -106,7 +106,7 @@ export default function SolarCalculator() {
           <label style={{ display: "block", fontWeight: 600, fontSize: "0.9rem", marginBottom: "0.25rem" }}>
             Number of people in your household
           </label>
-          <p style={{ margin: "0 0 0.4rem", fontSize: "0.78rem", color: BRAND.muted }}>Including children</p>
+          <p style={{ margin: "0 0 0.4rem", fontSize: "0.78rem", color: BRAND.muted }}>More people usually means higher usage — and bigger savings potential</p>
           <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
             {[1, 2, 3, 4, 5, 6].map((n) => (
               <button
@@ -130,7 +130,7 @@ export default function SolarCalculator() {
           <label style={{ display: "block", fontWeight: 600, fontSize: "0.9rem", marginBottom: "0.25rem" }}>
             Do you own your home?
           </label>
-          <p style={{ margin: "0 0 0.4rem", fontSize: "0.78rem", color: BRAND.muted }}>Solar installation requires owner permission</p>
+          <p style={{ margin: "0 0 0.4rem", fontSize: "0.78rem", color: BRAND.muted }}>Solar is installed on your roof, so owner permission is needed</p>
           <div style={{ display: "flex", gap: "0.75rem" }}>
             {[{ label: "Yes", value: true }, { label: "No", value: false }].map((opt) => (
               <button
@@ -155,7 +155,7 @@ export default function SolarCalculator() {
           <label style={{ display: "block", fontWeight: 600, fontSize: "0.9rem", marginBottom: "0.25rem" }}>
             Do you have a garage or outbuilding?
           </label>
-          <p style={{ margin: "0 0 0.4rem", fontSize: "0.78rem", color: BRAND.muted }}>Additional roof space can increase your system size</p>
+          <p style={{ margin: "0 0 0.4rem", fontSize: "0.78rem", color: BRAND.muted }}>A garage or shed roof can increase your system size and boost output</p>
           <div style={{ display: "flex", gap: "0.75rem" }}>
             {[{ label: "Yes", value: true }, { label: "No", value: false }].map((opt) => (
               <button
@@ -179,32 +179,48 @@ export default function SolarCalculator() {
       {/* Results */}
       {notOwner ? (
         <div style={{ background: "#fff8f0", border: `1px solid ${BRAND.orange}40`, borderRadius: "16px", padding: "1.5rem", textAlign: "center", marginBottom: "1.5rem" }}>
-          <p style={{ margin: 0, fontWeight: 600, color: BRAND.orange }}>Solar panels require owner permission.</p>
-          <p style={{ margin: "0.4rem 0 0", fontSize: "0.85rem", color: BRAND.muted }}>If you're a landlord or have permission from your landlord, get in touch and we can advise.</p>
+            <p style={{ margin: 0, fontWeight: 700, color: BRAND.orange, fontSize: "1rem" }}>You may still qualify</p>
+          <p style={{ margin: "0.4rem 0 0.75rem", fontSize: "0.85rem", color: BRAND.muted }}>If you're a landlord, or your landlord is open to it, solar can still be an option. Get in touch and we'll let you know what's possible.</p>
+          <a href={QUOTE_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: BRAND.orange, color: "#fff", fontWeight: 700, fontSize: "0.9rem", padding: "0.6rem 1.5rem", borderRadius: "999px", textDecoration: "none" }}>Talk to us →</a>
         </div>
       ) : (
         <div style={{ background: "#fff", border: `1px solid ${BRAND.border}`, borderRadius: "16px", padding: "1.75rem", marginBottom: "1.5rem" }}>
           <h2 style={{ fontSize: "0.95rem", fontWeight: 700, margin: "0 0 1.25rem", color: BRAND.blue, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-            Your Estimated Savings
+            Here&apos;s what solar could do for you
           </h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "0.85rem", marginBottom: "1rem" }}>
-            <ResultCard label="Annual saving" value={fmt(results.annual_saving)} sub="per year" highlight />
-            <ResultCard label="25-year saving" value={fmt(results.saving_25yr)} sub="total estimate" />
-            <ResultCard label="Payback period" value={`${results.payback_years} yrs`} sub="typical return" />
-            <ResultCard label="CO₂ saved" value={`${results.co2_saved}t`} sub="per year" />
+            <ResultCard label="You could save" value={fmt(results.annual_saving)} sub="every year on energy bills" highlight />
+            <ResultCard label="Long-term value" value={fmt(results.saving_25yr)} sub="over the system's lifetime" />
+            <ResultCard label="Breaks even in" value={`${results.payback_years} yrs`} sub="then it's all profit" />
+            <ResultCard label="Carbon cut" value={`${results.co2_saved}t`} sub="tonnes less per year" />
           </div>
+          {results.annual_saving > 600 && (
+            <p style={{ margin: "0 0 0.75rem", fontSize: "0.85rem", color: BRAND.blue, fontWeight: 600, textAlign: "center" }}>
+              Based on your inputs, you&apos;re in the top range for solar returns. A system this size typically pays for itself well within 10 years.
+            </p>
+          )}
+          {results.annual_saving <= 600 && inputs.monthly_bill > 150 && (
+            <p style={{ margin: "0 0 0.75rem", fontSize: "0.85rem", color: BRAND.blue, fontWeight: 600, textAlign: "center" }}>
+              With a bill like yours, solar could cut what you spend on energy by half or more. That&apos;s money staying in your pocket every month.
+            </p>
+          )}
+          {inputs.has_outbuilding && results.annual_saving <= 600 && inputs.monthly_bill <= 150 && (
+            <p style={{ margin: "0 0 0.75rem", fontSize: "0.85rem", color: BRAND.blue, fontWeight: 600, textAlign: "center" }}>
+              Your garage or outbuilding gives you extra roof space — which means a larger system and stronger returns than most households.
+            </p>
+          )}
           <div style={{ background: BRAND.light, borderRadius: "10px", padding: "0.85rem 1rem", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem" }}>
             <div>
-              <span style={{ fontSize: "0.8rem", color: BRAND.muted }}>Estimated system size: </span>
+              <span style={{ fontSize: "0.8rem", color: BRAND.muted }}>Recommended system: </span>
               <span style={{ fontWeight: 700, color: BRAND.blue }}>{results.system_size_kw} kW</span>
             </div>
             <div>
-              <span style={{ fontSize: "0.8rem", color: BRAND.muted }}>Estimated install cost: </span>
+              <span style={{ fontSize: "0.8rem", color: BRAND.muted }}>Typical investment: </span>
               <span style={{ fontWeight: 700, color: BRAND.blue }}>{fmt(results.system_cost)}</span>
             </div>
           </div>
           <p style={{ margin: "1rem 0 0", fontSize: "0.72rem", color: "#aaa", textAlign: "center" }}>
-            Estimates based on UK averages. Actual savings depend on usage, roof orientation, and tariff. A survey will give precise figures.
+            These are conservative UK-average estimates. Your actual savings could be higher depending on roof direction and usage. A free survey gives you the exact figures.
           </p>
         </div>
       )}
@@ -212,10 +228,10 @@ export default function SolarCalculator() {
       {/* CTA */}
       <div style={{ background: BRAND.blue, borderRadius: "16px", padding: "2rem 1.5rem", textAlign: "center" }}>
         <h3 style={{ color: "#fff", fontSize: "1.2rem", fontWeight: 800, margin: "0 0 0.5rem" }}>
-          Ready to see your exact savings?
+          Your estimate is ready — now get the real numbers
         </h3>
         <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.9rem", margin: "0 0 1.5rem" }}>
-          Our team will survey your property and give you a precise, no-obligation quote.
+          A free survey takes less than an hour. We'll confirm your exact system size, savings, and install cost — no pressure, no obligation.
         </p>
         <a
           href={QUOTE_URL}
@@ -227,8 +243,11 @@ export default function SolarCalculator() {
             borderRadius: "999px", textDecoration: "none",
           }}
         >
-          Get your FREE quote today
+          Book my free survey →
         </a>
+        <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.78rem", margin: "1rem 0 0" }}>
+          ✓ No obligation &nbsp; ✓ Surveyed within 5 days &nbsp; ✓ MCS certified installer
+        </p>
       </div>
     </div>
   );
